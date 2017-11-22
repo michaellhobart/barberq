@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Button, TextInput, StatusBar, Vibration} from '
 
 import NameEntryScreen from './screens/NameEntryScreen'
 import BarberSelectScreen from './screens/BarberSelectScreen'
+import ConfirmationScreen from './screens/ConfirmationScreen'
 
 class App extends Component {
   state = {
@@ -21,9 +22,11 @@ class App extends Component {
     customers:[],
   }
 
-
+  // On BarberSelectScreen: switches to confirmation screen
+  // sets timer to go back to name entry after 10 sec
   timerTest = () => {
-    setTimeout(() => {this.setState({currentScreen: "NameEntry"})}, 3000)
+    this.setState({currentScreen: "Confirmation"});
+    setTimeout(() => {this.setState({currentScreen: "NameEntry"})}, 10000)
   }
 
   // **** ROUTING FUNCTIONS
@@ -59,17 +62,19 @@ class App extends Component {
   3. sets the pendingCustomer in state to ""
    */
   newCustomerHandler = () => {
-    const id = this.newCustomerId()
-    this.setState({
-      customers: [
-        ...this.state.customers,
-        {
-          id,
-          name: this.state.pendingCustomer
-        }
-      ],
-      pendingCustomer: ""
-    })
+    if (this.state.pendingCustomer) {
+      const id = this.newCustomerId()
+      this.setState({
+        customers: [
+          ...this.state.customers,
+          {
+            id,
+            name: this.state.pendingCustomer
+          }
+        ],
+        pendingCustomer: ""
+      })
+    }
   }
 
   // Takes the value from the inputText in NameEntryScreen (as "text"), sets the state value of pendingCustomer to the "text" value
@@ -98,6 +103,10 @@ class App extends Component {
           changeScreen={() => this.changeScreen("NameEntry")}
           addBarberPref={this.addBarberPref}
           timerTest={this.timerTest}
+          confirm={() => this.changeScreen("Confirmation")}
+        />
+        <ConfirmationScreen
+          currentScreen={this.state.currentScreen}
         />
       </View>
     )
