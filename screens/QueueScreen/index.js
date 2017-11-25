@@ -50,8 +50,8 @@ const QueueScreen = (props) => {
               <Text style={{color: '#8e44ad', fontSize: 24, fontWeight: '700'}}>{customer.barber}  </Text>
               {/* <Button onPress={() => props.removeCustomerFromQueue(customer.id)}title="Remove Customer"/> */}
               <TouchableOpacity onPress={() => props.removeCustomerFromQueue(customer.id)}>
-                <View style={{width: 115, height: 40, justifyContent: 'center', alignItems: 'center', backgroundColor: '#3498db', borderRadius: 7}}>
-                  <Text style={{color: '#ecf0f1', fontSize: 18, fontWeight: '700'}}>Remove</Text>
+                <View style={{width: 115, height: 40, justifyContent: 'center', alignItems: 'center', backgroundColor: '#2ecc71', borderRadius: 7}}>
+                  <Text style={{color: '#ecf0f1', fontSize: 18, fontWeight: '700'}}>Select</Text>
                 </View>
               </TouchableOpacity>
             </View>

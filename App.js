@@ -7,17 +7,14 @@ import BarberSelectScreen from './screens/BarberSelectScreen'
 import ConfirmationScreen from './screens/ConfirmationScreen'
 import QueueScreen from './screens/QueueScreen'
 
+import fakeCustomers from './FakeData'
+
 class App extends Component {
   state = {
-    currentScreen: "Queue",
+    currentScreen: "NameEntry",
     pendingCustomer: "",
     pendingBarberPref: "",
-    customers:[
-      {id: "a", name: "Mark", barber: "Matt"},
-      {id: "b", name: "Whit", barber: "Next Available"},
-      {id: "c", name: "Dee", barber: "Kayla"},
-      {id: "d", name: "Mitch", barber: "Pedro"}
-    ],
+    customers: fakeCustomers
   }
 
   // On BarberSelectScreen: switches to confirmation screen
