@@ -9,14 +9,6 @@ import ConfirmationScreen from './screens/ConfirmationScreen'
 class App extends Component {
   state = {
     currentScreen: "NameEntry",
-    barbers: [
-      {id: 0, name: "Next Availble"},
-      {id: 1, name: "Pedro"},
-      {id: 2, name: "John"},
-      {id: 3, name: "Kayla"},
-      {id: 4, name: "Corey"},
-      {id: 5, name: "Matt"}
-    ],
     pendingCustomer: "",
     pendingBarberPref: "",
     customers:[],
