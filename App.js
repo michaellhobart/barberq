@@ -11,7 +11,12 @@ class App extends Component {
     currentScreen: "NameEntry",
     pendingCustomer: "",
     pendingBarberPref: "",
-    customers:[],
+    customers:[
+      {id: 0, name: "Mark", barber: "Matt"},
+      {id: 1, name: "Whit", barber: "Next Available"},
+      {id: 2, name: "Dee", barber: "Kayla"},
+      {id: 3, name: "Mitch", barber: "Pedro"}
+    ],
   }
 
   // On BarberSelectScreen: switches to confirmation screen
@@ -20,6 +25,13 @@ class App extends Component {
     this.setState({currentScreen: "Confirmation"});
     setTimeout(() => {this.setState({currentScreen: "NameEntry"})}, 10000)
   }
+
+  confirmationNavigation = () => {
+    this.setState({currentScreen: "Confirmation"});
+    setTimeout(() => {this.setState({currentScreen: "NameEntry"})}, 3000)
+  }
+
+  confirmedCustomerInfo = this.state.customers[0]
 
   // **** ROUTING FUNCTIONS
 
@@ -53,6 +65,7 @@ class App extends Component {
       ],
       pendingCustomer: ''
     });
+    this.confirmationNavigation()
   }
 
   // Logs the state afer button is pressed
@@ -122,6 +135,8 @@ class App extends Component {
         />
         <ConfirmationScreen
           currentScreen={this.state.currentScreen}
+          // confirmedCustomerInfo={this.confirmedCustomerInfo}
+          logState={this.logState}
         />
       </View>
     )
