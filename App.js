@@ -27,32 +27,38 @@ class App extends Component {
     setTimeout(() => {this.setState({currentScreen: "NameEntry"})}, 10000)
   }
 
+  // Navigates to Confirmation screen and then, after 3 seconds, NameEntry
   confirmationNavigation = () => {
     this.setState({currentScreen: "Confirmation"});
     setTimeout(() => {this.setState({currentScreen: "NameEntry"})}, 3000)
   }
 
-  confirmedCustomerInfo = this.state.customers[0]
 
   // **** ROUTING FUNCTIONS
 
+  // navigates to screen passed as argument
   changeScreen = (newScreen) => {
     this.setState({currentScreen: newScreen})
   }
-
+  // navigates to BarberSelectScreen
   navigateToBarbers = () => {
     if (this.state.pendingCustomer) {
       this.setState({currentScreen: 'BarberSelect'})
     }
-
   }
 
   // This adds a pending barber preference
-
   addBarberPref = (barber) => {
     this.setState({pendingBarberPref: barber})
   }
 
+  /*
+    1. retrieves a new id via newCustomerId()
+    2. returns new customer array with all previous items, and the new
+    customer added to the bottom of the list
+    3. sets pendingCustomer to an empty string
+    4. fires confirmationNavigation function
+  */
   addCustomerToQueue = (barber) => {
     const id = this.newCustomerId()
     this.setState({
