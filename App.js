@@ -27,6 +27,15 @@ class App extends Component {
     this.setState({currentScreen: newScreen})
   }
 
+  navigateToBarbers = () => {
+    if (this.state.pendingCustomer) {
+      this.setState({currentScreen: 'BarberSelect'})
+    }
+
+  }
+
+
+
   // This adds a pending barber preference
 
   addBarberPref = (barber) => {
@@ -84,7 +93,7 @@ class App extends Component {
           changeInputTextValue={this.changeInputTextValue}
           newCustomerHandler={this.newCustomerHandler}
           logState={this.logState}
-          changeScreen={() => this.changeScreen("BarberSelect")}
+          navigateToBarbers={this.navigateToBarbers}
           doVibrate={this.doVibrate}
         />
         <BarberSelectScreen
