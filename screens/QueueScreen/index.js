@@ -48,6 +48,7 @@ const QueueScreen = (props) => {
               key={customer.id}>
               <Text style={{color: '#e67e22', fontSize: 24, fontWeight: '700'}}>{customer.name}</Text>
               <Text style={{color: '#8e44ad', fontSize: 24, fontWeight: '700'}}>{customer.barber}</Text>
+              <Button onPress={() => props.removeCustomerFromQueue(customer.id)}title="Remove Customer"/>
             </View>
           )}
         </ScrollView>

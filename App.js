@@ -33,6 +33,11 @@ class App extends Component {
     setTimeout(() => {this.setState({currentScreen: "NameEntry"})}, 3000)
   }
 
+  removeCustomerFromQueue = id =>
+    this.setState({
+      customers: this.state.customers.filter(customer => id !== customer.id)
+    })
+
 
   // **** ROUTING FUNCTIONS
 
@@ -149,6 +154,7 @@ class App extends Component {
           currentScreen={this.state.currentScreen}
           customers={this.state.customers}
           changeScreen={() => this.changeScreen("NameEntry")}
+          removeCustomerFromQueue={this.removeCustomerFromQueue}
         />
       </View>
     )
