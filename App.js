@@ -5,10 +5,11 @@ import { StyleSheet, Text, View, Button, TextInput, StatusBar, Vibration} from '
 import NameEntryScreen from './screens/NameEntryScreen'
 import BarberSelectScreen from './screens/BarberSelectScreen'
 import ConfirmationScreen from './screens/ConfirmationScreen'
+import QueueScreen from './screens/QueueScreen'
 
 class App extends Component {
   state = {
-    currentScreen: "NameEntry",
+    currentScreen: "Queue",
     pendingCustomer: "",
     pendingBarberPref: "",
     customers:[
@@ -119,8 +120,8 @@ class App extends Component {
           changeInputTextValue={this.changeInputTextValue}
           newCustomerHandler={this.newCustomerHandler}
           logState={this.logState}
+          changeScreen={() => this.changeScreen("Queue")}
           navigateToBarbers={this.navigateToBarbers}
-          doVibrate={this.doVibrate}
         />
         <BarberSelectScreen
           currentScreen={this.state.currentScreen}
@@ -137,6 +138,10 @@ class App extends Component {
           currentScreen={this.state.currentScreen}
           // confirmedCustomerInfo={this.confirmedCustomerInfo}
           logState={this.logState}
+        />
+        <QueueScreen
+          currentScreen={this.state.currentScreen}
+          customers={this.state.customers}
         />
       </View>
     )

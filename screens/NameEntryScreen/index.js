@@ -19,11 +19,11 @@ const NameEntryScreen = (props) => {
             value={props.pendingCustomer}
           />
         </KeyboardAvoidingView>
-        {/* <View style={{marginTop: 40}}>
-          <Button onPress={props.newCustomerHandler} title="Add Name To State"/>
-        </View> */}
         <View style={{marginTop: 40}}>
-          <Button onPress={props.navigateToBarbers} title="Select a Barber"/>
+          <Button onPress={props.navigateToBarbers} title="Please Select a Barber"/>
+        </View>
+        <View style={{marginTop: 40}}>
+          <Button onPress={props.navigateToBarbers} title="Please Select a Barber"/>
         </View>
         <View style={{marginTop: 40}}>
           <Button onPress={props.logState} title="Console Log State"/>
