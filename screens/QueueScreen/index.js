@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, Button, ScrollView} from 'react-native'
+import {View, Text, Button, ScrollView, TouchableOpacity} from 'react-native'
 
 const QueueScreen = (props) => {
   if (props.currentScreen != "Queue") {
@@ -29,7 +29,7 @@ const QueueScreen = (props) => {
             borderBottomWidth: 2,
             borderBottomColor: '#ecf0f1'
           }}>
-          <Text style={{color: '#ecf0f1', fontSize: 24, fontWeight: '700'}}>Name</Text>
+          <Text style={{color: '#ecf0f1', fontSize: 24, fontWeight: '700'}}>Name | </Text>
           <Text style={{color: '#ecf0f1', fontSize: 24, fontWeight: '700'}}>Barber</Text>
         </View>
         <ScrollView>
@@ -41,14 +41,19 @@ const QueueScreen = (props) => {
                 backgroundColor: '#1c1c1c',
                 width: 900,
                 height: 75,
-                borderBottomWidth: 1,
+                borderBottomWidth: 0.5,
                 borderBottomColor: '#ecf0f1',
                 padding: 15
               }}
               key={customer.id}>
-              <Text style={{color: '#e67e22', fontSize: 24, fontWeight: '700'}}>{customer.name}</Text>
-              <Text style={{color: '#8e44ad', fontSize: 24, fontWeight: '700'}}>{customer.barber}</Text>
-              <Button onPress={() => props.removeCustomerFromQueue(customer.id)}title="Remove Customer"/>
+              <Text style={{color: '#e67e22', fontSize: 24, fontWeight: '700'}}>{customer.name} | </Text>
+              <Text style={{color: '#8e44ad', fontSize: 24, fontWeight: '700'}}>{customer.barber}  </Text>
+              {/* <Button onPress={() => props.removeCustomerFromQueue(customer.id)}title="Remove Customer"/> */}
+              <TouchableOpacity onPress={() => props.removeCustomerFromQueue(customer.id)}>
+                <View style={{width: 115, height: 40, justifyContent: 'center', alignItems: 'center', backgroundColor: '#3498db', borderRadius: 7}}>
+                  <Text style={{color: '#ecf0f1', fontSize: 18, fontWeight: '700'}}>Remove</Text>
+                </View>
+              </TouchableOpacity>
             </View>
           )}
         </ScrollView>
