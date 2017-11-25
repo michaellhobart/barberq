@@ -18,13 +18,13 @@ const BarberSelectScreen = (props) => {
   }
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text style={{padding: 20, color: '#fefefe', fontSize: 28, fontWeight: '700'}}>{props.pendingCustomer}, please select a barber</Text>
+      <Text style={{padding: 20, color: '#fefefe', fontSize: 28, fontWeight: '700'}}>{props.pendingCustomer},  please select a barber</Text>
       <View style={{flex: 1, flexDirection: 'row',flexWrap: 'wrap',justifyContent: 'center',alignItems: 'center',alignContent: 'flex-start'}}>
         {barbers.map((barber, index) =>
           <BarberCard
             key={barber.id}
             name={barber.name}
-            addBarberPref={() => props.addBarberPref(barber.name)}
+            addBarberPref={() => props.addCustomerToQueue(barber.name)}
           />
         )}
       </View>

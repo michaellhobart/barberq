@@ -34,12 +34,25 @@ class App extends Component {
 
   }
 
-
-
   // This adds a pending barber preference
 
   addBarberPref = (barber) => {
     this.setState({pendingBarberPref: barber})
+  }
+
+  addCustomerToQueue = (barber) => {
+    const id = this.newCustomerId()
+    this.setState({
+      customers: [
+        ...this.state.customers,
+        {
+          id,
+          name: this.state.pendingCustomer,
+          barber
+        }
+      ],
+      pendingCustomer: ''
+    });
   }
 
   // Logs the state afer button is pressed
@@ -103,6 +116,7 @@ class App extends Component {
           logState={this.logState}
           changeScreen={() => this.changeScreen("NameEntry")}
           addBarberPref={this.addBarberPref}
+          addCustomerToQueue={this.addCustomerToQueue}
           timerTest={this.timerTest}
           confirm={() => this.changeScreen("Confirmation")}
         />
