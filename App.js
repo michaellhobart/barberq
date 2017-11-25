@@ -13,10 +13,10 @@ class App extends Component {
     pendingCustomer: "",
     pendingBarberPref: "",
     customers:[
-      {id: 0, name: "Mark", barber: "Matt"},
-      {id: 1, name: "Whit", barber: "Next Available"},
-      {id: 2, name: "Dee", barber: "Kayla"},
-      {id: 3, name: "Mitch", barber: "Pedro"}
+      {id: "a", name: "Mark", barber: "Matt"},
+      {id: "b", name: "Whit", barber: "Next Available"},
+      {id: "c", name: "Dee", barber: "Kayla"},
+      {id: "d", name: "Mitch", barber: "Pedro"}
     ],
   }
 
@@ -142,6 +142,7 @@ class App extends Component {
         <QueueScreen
           currentScreen={this.state.currentScreen}
           customers={this.state.customers}
+          changeScreen={() => this.changeScreen("NameEntry")}
         />
       </View>
     )
