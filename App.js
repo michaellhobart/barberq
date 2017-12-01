@@ -1,20 +1,22 @@
 // ****** Node Modules/Libraries ******
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, StatusBar, Vibration} from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, StatusBar} from 'react-native';
 
 import NameEntryScreen from './screens/NameEntryScreen'
 import BarberSelectScreen from './screens/BarberSelectScreen'
 import ConfirmationScreen from './screens/ConfirmationScreen'
 import QueueScreen from './screens/QueueScreen'
+import BarberFilterScreen from './screens/BarberFilterScreen'
 
 import fakeCustomers from './FakeData'
 
 class App extends Component {
   state = {
-    currentScreen: "NameEntry",
+    currentScreen: "BarberFilter",
     pendingCustomer: "",
     pendingBarberPref: "",
-    customers: fakeCustomers
+    customers: fakeCustomers,
+    filteredBarber: "",
   }
 
   // On BarberSelectScreen: switches to confirmation screen
@@ -53,6 +55,16 @@ class App extends Component {
   addBarberPref = (barber) => {
     this.setState({pendingBarberPref: barber})
   }
+
+
+  /******** BARBER FILTER FUNCTIONS *********/
+
+  filterBarber = (barber) => {
+    this.setState({filteredBarber: barber, currentScreen: "Queue"})
+  }
+
+
+    /******** CUSTOMER QUEUE FUNCTIONS *********/
 
   /*
     1. retrieves a new id via newCustomerId()
@@ -152,6 +164,12 @@ class App extends Component {
           customers={this.state.customers}
           changeScreen={() => this.changeScreen("NameEntry")}
           removeCustomerFromQueue={this.removeCustomerFromQueue}
+          filteredBarber={this.state.filteredBarber}
+        />
+        <BarberFilterScreen
+          currentScreen={this.state.currentScreen}
+          filterBarber={this.filterBarber}
+          logState={this.logState}
         />
       </View>
     )
