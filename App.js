@@ -12,10 +12,11 @@ import fakeCustomers from './FakeData'
 
 class App extends Component {
   state = {
-    currentScreen: "BarberFilter",
+    currentScreen: "NameEntry",
     pendingCustomer: "",
     pendingBarberPref: "",
-    customers: fakeCustomers,
+    // customers: fakeCustomers,
+    customers: [],
     filteredBarber: "",
   }
 
@@ -34,7 +35,9 @@ class App extends Component {
 
   removeCustomerFromQueue = id =>
     this.setState({
-      customers: this.state.customers.filter(customer => id !== customer.id)
+      customers: this.state.customers.filter(customer => id !== customer.id),
+      currentScreen: "NameEntry",
+      filteredBarber: ""
     })
 
 
@@ -140,7 +143,7 @@ class App extends Component {
           changeInputTextValue={this.changeInputTextValue}
           newCustomerHandler={this.newCustomerHandler}
           logState={this.logState}
-          changeScreen={() => this.changeScreen("Queue")}
+          changeScreen={() => this.changeScreen("BarberFilter")}
           navigateToBarbers={this.navigateToBarbers}
         />
         <BarberSelectScreen

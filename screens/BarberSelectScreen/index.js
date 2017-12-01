@@ -4,7 +4,7 @@ import {View, Text, TouchableOpacity, StyleSheet, Button} from 'react-native'
 import BarberCard from '../../Components/BarberCard'
 
 const barbers = [
-  {id: 0, name: "Next Availble"},
+  {id: 0, name: "Next Available"},
   {id: 1, name: "Pedro"},
   {id: 2, name: "John"},
   {id: 3, name: "Kayla"},
