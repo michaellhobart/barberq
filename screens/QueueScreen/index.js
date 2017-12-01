@@ -34,7 +34,9 @@ const QueueScreen = (props) => {
           <Text style={{color: '#ecf0f1', fontSize: 24, fontWeight: '700'}}>Barber</Text>
         </View>
         <ScrollView>
-          {props.customers.map((customer) =>
+          {props.customers
+            .filter(customer => customer.barber == props.filteredBarber || customer.barber == "Next Available")
+            .map((customer) =>
             <View
               style={{
                 flexDirection: 'row',
