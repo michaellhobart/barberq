@@ -16,7 +16,7 @@ class App extends Component {
     pendingCustomer: "",
     pendingBarberPref: "",
     // customers: fakeCustomers,
-    customers: [],
+    // customers: [],
     filteredBarber: "",
   }
 
@@ -76,57 +76,37 @@ class App extends Component {
     3. sets pendingCustomer to an empty string
     4. fires confirmationNavigation function
   */
-  addCustomerToQueue = (barber) => {
-    const id = this.newCustomerId()
-    this.setState({
-      customers: [
-        ...this.state.customers,
+
+  addCustomerToQueue = async (barber) => {
+    try {
+      const customers = await AsyncStorage.getItem('customers');
+      const parsedCustomers = customers ? JSON.parse(customers) : [];
+      const asyncId = await AsyncStorage.getItem('lastCustomerId');
+      const id = asyncId ? parseInt(asyncId, 10) : 0;
+      const newCustomers = [
+        ...parsedCustomers,
         {
           id,
           name: this.state.pendingCustomer,
           barber
         }
-      ],
-      pendingCustomer: ''
-    });
-    this.confirmationNavigation()
-  }
+      ];
+      await AsyncStorage.multiSet([
+        ['customers', JSON.stringify(newCustomers)],
+        ['lastCustomerId', (id += 1).toString()]
+      ]);
+      this.setState({
+        pendingCustomer: ''
+      });
+      this.confirmationNavigation();
+    }
+    catch (error){
+      console.log(error);
+    };
+  };
 
   // Logs the state afer button is pressed
-  logState = () => console.log(this.state)
-
-  // Accumulator for the customer ID's to increase with each customer added
-  lastCustomerId = 0;
-
-  // Takes the current lastCustomerId, increases it by one, and returns the new id
-  newCustomerId = () => {
-    const id = this.lastCustomerId;
-    this.lastCustomerId += 1;
-    return id;
-  }
-
-  /*
-  1. Fires the function newCustomerId to retrieve a new id and assigns it to const id
-  2. Fires setState function to:
-    1. Add all of the previous customers to the new customer array
-    2. Adds the new id, and the value from pendingCustomer from state to the array
-  3. sets the pendingCustomer in state to ""
-   */
-  newCustomerHandler = () => {
-    if (this.state.pendingCustomer) {
-      const id = this.newCustomerId()
-      this.setState({
-        customers: [
-          ...this.state.customers,
-          {
-            id,
-            name: this.state.pendingCustomer
-          }
-        ],
-        pendingCustomer: ""
-      })
-    }
-  }
+  logState = () => console.log(this.state);
 
   // Takes the value from the inputText in NameEntryScreen (as "text"), sets the state value of pendingCustomer to the "text" value
   changeInputTextValue = (text) => {
@@ -149,14 +129,22 @@ class App extends Component {
     try {
       let user = await AsyncStorage.getItem('user');
       let parsed = JSON.parse(user)
-      alert(parsed.email)
+      alert(parsed.name)
     }
     catch (error) {
       alert(error)
     }
   }
 
-  removeData = () => AsyncStorage.removeItem('user');
+  removeData = () => AsyncStorage.multiRemove(['customers', 'lastCustomerId']);
+
+  logAsyncStorage = async () => {
+    const customerz = await AsyncStorage.getItem('customers')
+    console.log(JSON.parse(customerz));
+  }
+
+
+  /******** COMPONENT RENDER JSX ********/
 
   render() {
     return (
@@ -200,14 +188,17 @@ class App extends Component {
           logState={this.logState}
         />
         <View>
-          <TouchableOpacity onPress={this.saveData}>
+          {/* <TouchableOpacity onPress={this.saveData}>
             <Text style={{color: '#fefefe', fontSize: 40, fontWeight: '700'}}>Click me to save data</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.displayData}>
             <Text style={{color: '#fefefe', fontSize: 40, fontWeight: '700',}}>Click me to Display data</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity onPress={this.removeData}>
             <Text style={{color: '#fefefe', fontSize: 40, fontWeight: '700',}}>Click me to Remove data</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.logAsyncStorage}>
+            <Text style={{color: '#fefefe', fontSize: 40, fontWeight: '700',}}>Console.log AsyncStorage</Text>
           </TouchableOpacity>
         </View>
       </View>
