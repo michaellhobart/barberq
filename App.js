@@ -31,27 +31,32 @@ class App extends Component {
   /**** FUNCTIONS TO CALL WHEN APP CHANGES ****/
   componentWillUpdate = async () => {
     try {
-      console.log("componentWillUpdate");
       const storedCustomers = await AsyncStorage.getItem('customers');
       storedCustomers ? this.customers = JSON.parse(storedCustomers) : null;
+      // console.log(this.customers);
     }
     catch (error) {
       console.log(error);
     }
   }
 
-  // Navigates to Confirmation screen and then, after 3 seconds, NameEntry
-  confirmationNavigation = () => {
-    this.setState({currentScreen: "Confirmation"});
-    setTimeout(() => {this.setState({currentScreen: "NameEntry"})}, 2000)
+
+  removeCustomerFromQueue = async (id) => {
+    try {
+      const customers = await AsyncStorage.getItem('customers');
+      const parsedCustomers = JSON.parse(customers).filter(customer => id !== customer.id);
+      AsyncStorage.setItem('customers', JSON.stringify(parsedCustomers));
+
+      this.setState({
+        currentScreen: "NameEntry",
+        filteredBarber: ""
+      })
+    }
+    catch (error) {
+      console.log(error);
+    }
   }
 
-  removeCustomerFromQueue = id =>
-    this.setState({
-      customers: this.state.customers.filter(customer => id !== customer.id),
-      currentScreen: "NameEntry",
-      filteredBarber: ""
-    })
 
 
   /**** ROUTING FUNCTIONS ****/
@@ -65,6 +70,12 @@ class App extends Component {
     if (this.state.pendingCustomer) {
       this.setState({currentScreen: 'BarberSelect'})
     }
+  }
+
+  // Navigates to Confirmation screen and then, after 3 seconds, NameEntry
+  confirmationNavigation = () => {
+    this.setState({currentScreen: "Confirmation"});
+    setTimeout(() => {this.setState({currentScreen: "NameEntry"})}, 2000)
   }
 
   // This adds a pending barber preference
@@ -127,7 +138,7 @@ class App extends Component {
   }
 
 
-  /******** ASYNC TEST FUNCTIONS ********/
+  /******** ASYNC TEST FUNCTIONS ********
 
   saveData = () => {
     let obj = {
@@ -155,6 +166,8 @@ class App extends Component {
     const customerz = await AsyncStorage.getItem('customers')
     console.log(JSON.parse(customerz));
   }
+
+ */
 
 
   /******** COMPONENT RENDER JSX ********/
@@ -194,23 +207,18 @@ class App extends Component {
         />
         <BarberFilterScreen
           currentScreen={this.state.currentScreen}
+          barbers={this.state.barbers}
           filterBarber={this.filterBarber}
           logState={this.logState}
         />
-        <View>
-          {/* <TouchableOpacity onPress={this.saveData}>
-            <Text style={{color: '#fefefe', fontSize: 40, fontWeight: '700'}}>Click me to save data</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.displayData}>
-            <Text style={{color: '#fefefe', fontSize: 40, fontWeight: '700',}}>Click me to Display data</Text>
-          </TouchableOpacity> */}
+        {/* <View>
           <TouchableOpacity onPress={this.removeData}>
             <Text style={{color: '#fefefe', fontSize: 40, fontWeight: '700',}}>Click me to Remove data</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={this.logAsyncStorage}>
             <Text style={{color: '#fefefe', fontSize: 40, fontWeight: '700',}}>Console.log AsyncStorage</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
     )
   }
