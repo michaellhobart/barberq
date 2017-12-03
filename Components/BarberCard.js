@@ -4,7 +4,7 @@ import {View, Text, TouchableOpacity} from 'react-native'
 const BarberCard = props =>
 <View>
   <TouchableOpacity
-    onPress={props.addBarberPref}>
+    onPress={props.addCustomer}>
     <View style={{
       alignItems: 'center',
       justifyContent: 'center',

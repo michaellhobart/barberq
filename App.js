@@ -15,16 +15,29 @@ class App extends Component {
     currentScreen: "NameEntry",
     pendingCustomer: "",
     pendingBarberPref: "",
-    // customers: fakeCustomers,
-    // customers: [],
     filteredBarber: "",
+    barbers: [
+      {id: 0, name: "Next Available"},
+      {id: 1, name: "Pedro"},
+      {id: 2, name: "John"},
+      {id: 3, name: "Kayla"},
+      {id: 4, name: "Corey"},
+      {id: 5, name: "Matt"}
+    ]
   }
 
-  // On BarberSelectScreen: switches to confirmation screen
-  // sets timer to go back to name entry after 10 sec
-  timerTest = () => {
-    this.setState({currentScreen: "Confirmation"});
-    setTimeout(() => {this.setState({currentScreen: "NameEntry"})}, 10000)
+  customers = []
+
+  /**** FUNCTIONS TO CALL WHEN APP CHANGES ****/
+  componentWillUpdate = async () => {
+    try {
+      console.log("componentWillUpdate");
+      const storedCustomers = await AsyncStorage.getItem('customers');
+      storedCustomers ? this.customers = JSON.parse(storedCustomers) : null;
+    }
+    catch (error) {
+      console.log(error);
+    }
   }
 
   // Navigates to Confirmation screen and then, after 3 seconds, NameEntry
@@ -41,7 +54,7 @@ class App extends Component {
     })
 
 
-  // **** ROUTING FUNCTIONS
+  /**** ROUTING FUNCTIONS ****/
 
   // navigates to screen passed as argument
   changeScreen = (newScreen) => {
@@ -165,19 +178,16 @@ class App extends Component {
           barbers={this.state.barbers}
           logState={this.logState}
           changeScreen={() => this.changeScreen("NameEntry")}
-          addBarberPref={this.addBarberPref}
           addCustomerToQueue={this.addCustomerToQueue}
-          timerTest={this.timerTest}
           confirm={() => this.changeScreen("Confirmation")}
         />
         <ConfirmationScreen
           currentScreen={this.state.currentScreen}
-          // confirmedCustomerInfo={this.confirmedCustomerInfo}
           logState={this.logState}
         />
         <QueueScreen
           currentScreen={this.state.currentScreen}
-          customers={this.state.customers}
+          customers={this.customers}
           changeScreen={() => this.changeScreen("NameEntry")}
           removeCustomerFromQueue={this.removeCustomerFromQueue}
           filteredBarber={this.state.filteredBarber}
