@@ -16,7 +16,7 @@ const BarberFilterScreen = (props) => {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text style={{fontSize: 72, fontWeight: '700', color: '#e67e22'}}>FILTER BARBER</Text>
-      <Button onPress={props.logState} title="Console Log State"/>
+      {/* <Button onPress={props.logState} title="Console Log State"/> */}
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', alignContent: 'flex-start'}}>
         {barbers.map((barber, index) =>
           <TouchableOpacity onPress={() => props.filterBarber(barber.name)} key={barber.id}>

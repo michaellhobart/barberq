@@ -8,8 +8,8 @@ const QueueScreen = (props) => {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', paddingTop: 25}}>
       <Text style={{fontSize: 72, fontWeight: '700', color: '#2ecc71'}}>CUSTOMERS</Text>
-      <Button onPress={() => console.log(`filteredBarber is set to ${props.filteredBarber}`)} title="Log Barber State"/>
-      <Button onPress={props.changeScreen} title="Go to NameEntry"/>
+      {/* <Button onPress={() => console.log(`filteredBarber is set to ${props.filteredBarber}`)} title="Log Barber State"/> */}
+      <Button onPress={props.changeScreen} title="Back to NameEntry"/>
       <View
         style={{
           flex:1,

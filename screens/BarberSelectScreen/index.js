@@ -28,10 +28,10 @@ const BarberSelectScreen = (props) => {
           />
         )}
       </View>
-      <Button onPress={props.logState} title="Console Log State"/>
+      {/* <Button onPress={props.logState} title="Console Log State"/> */}
       {/* <Button onPress={props.changeScreen} title="Go To NameEntry"/> */}
-      <Button onPress={props.timerTest} title="Test Timer"/>
-      <Button onPress={props.confirm} title="Confirm Barber"/>
+      {/* <Button onPress={props.timerTest} title="Test Timer"/> */}
+      {/* <Button onPress={props.confirm} title="Confirm Barber"/> */}
     </View>
   )
 }

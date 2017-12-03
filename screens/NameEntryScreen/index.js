@@ -17,17 +17,18 @@ const NameEntryScreen = (props) => {
             spellCheck={false}
             onChangeText={props.changeInputTextValue}
             value={props.pendingCustomer}
+            placeholder="Enter your name"
           />
         </KeyboardAvoidingView>
         <View style={{marginTop: 40}}>
           <Button onPress={props.navigateToBarbers} title="Please Select a Barber"/>
         </View>
         <View style={{marginTop: 40}}>
-          <Button onPress={props.changeScreen} title="Queue"/>
+          <Button onPress={props.changeScreen} title="Go to Customer Queue"/>
         </View>
-        <View style={{marginTop: 40}}>
+        {/* <View style={{marginTop: 40}}>
           <Button onPress={props.logState} title="Console Log State"/>
-        </View>
+        </View> */}
     </View>
   )
 }

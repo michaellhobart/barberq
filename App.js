@@ -1,6 +1,6 @@
 // ****** Node Modules/Libraries ******
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button, TextInput, StatusBar} from 'react-native';
+import { StyleSheet, View, StatusBar, Text, TouchableOpacity, AsyncStorage} from 'react-native';
 
 import NameEntryScreen from './screens/NameEntryScreen'
 import BarberSelectScreen from './screens/BarberSelectScreen'
@@ -30,7 +30,7 @@ class App extends Component {
   // Navigates to Confirmation screen and then, after 3 seconds, NameEntry
   confirmationNavigation = () => {
     this.setState({currentScreen: "Confirmation"});
-    setTimeout(() => {this.setState({currentScreen: "NameEntry"})}, 3000)
+    setTimeout(() => {this.setState({currentScreen: "NameEntry"})}, 2000)
   }
 
   removeCustomerFromQueue = id =>
@@ -133,6 +133,31 @@ class App extends Component {
     this.setState({pendingCustomer: text})
   }
 
+
+  /******** ASYNC TEST FUNCTIONS ********/
+
+  saveData = () => {
+    let obj = {
+      name: 'Johb Dobe',
+      email: 'tust@hormones.come',
+      city: 'Rare, CO'
+    }
+    AsyncStorage.setItem('user', JSON.stringify(obj));
+  }
+
+  displayData = async () => {
+    try {
+      let user = await AsyncStorage.getItem('user');
+      let parsed = JSON.parse(user)
+      alert(parsed.email)
+    }
+    catch (error) {
+      alert(error)
+    }
+  }
+
+  removeData = () => AsyncStorage.removeItem('user');
+
   render() {
     return (
       <View style={{flex: 1, backgroundColor: '#1b1b1b', alignItems: 'center', justifyContent: 'center'}}>
@@ -174,6 +199,17 @@ class App extends Component {
           filterBarber={this.filterBarber}
           logState={this.logState}
         />
+        <View>
+          <TouchableOpacity onPress={this.saveData}>
+            <Text style={{color: '#fefefe', fontSize: 40, fontWeight: '700'}}>Click me to save data</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.displayData}>
+            <Text style={{color: '#fefefe', fontSize: 40, fontWeight: '700',}}>Click me to Display data</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.removeData}>
+            <Text style={{color: '#fefefe', fontSize: 40, fontWeight: '700',}}>Click me to Remove data</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
