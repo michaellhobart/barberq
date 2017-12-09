@@ -164,7 +164,6 @@ class App extends Component {
         />
         <BarberSelectScreen
           currentScreen={this.state.currentScreen}
-          pendingCustomer={this.state.pendingCustomer}
           barbers={this.state.barbers}
           logState={this.logState}
           changeScreen={() => this.changeScreen("NameEntry")}

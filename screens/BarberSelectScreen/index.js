@@ -9,7 +9,7 @@ const BarberSelectScreen = (props) => {
   }
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text style={{padding: 20, color: '#ecf0f1', fontSize: 28, fontWeight: '700'}}>{props.pendingCustomer},  please select a barber</Text>
+      <Text style={{padding: 25, color: '#ecf0f1', fontSize: 45, fontWeight: '700'}}>PLEASE SELECT A BARBER</Text>
       <View style={{flex: 1, flexDirection: 'row',flexWrap: 'wrap',justifyContent: 'center',alignItems: 'center',alignContent: 'center', marginBottom: 30}}>
         {props.barbers.map((barber, index) =>
           <BarberCard

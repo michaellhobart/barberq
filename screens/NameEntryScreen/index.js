@@ -12,11 +12,17 @@ const NameEntryScreen = (props) => {
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', marginBottom: 100}}>
           {/* <Text style={{color: 'red', fontSize: 60, marginBottom: 35}}>{props.pendingCustomer}</Text> */}
           <View style={{marginBottom: 75}}>
-            <Text style={{fontSize: 60, fontWeight: '200', color: "#ecf0f1", textAlign: "center", letterSpacing: 2}}>
-              WELCOME TO{"\n"}BOSTONIAN BARBER SHOP
-            </Text>
+            <View style={{marginBottom: 10}}>
+              <Text style={{fontSize: 60, fontWeight: '200', color: "#ecf0f1", textAlign: "center", letterSpacing: 2}}>
+                WELCOME TO{"\n"}BOSTONIAN BARBER SHOP
+              </Text>
+            </View>
             <Text style={{fontSize: 23, fontWeight: '700', color: "#ecf0f1", textAlign: "center", letterSpacing: 2}}>
-              Enter your first name and last initial below.
+              Enter your
+              <Text style={{fontWeight: '900', color: '#2980b9'}}> FIRST NAME </Text>
+              and
+              <Text style={{fontWeight: '900', color: '#2980b9'}}> LAST INITIAL </Text>
+                below.
             </Text>
           </View>
             <KeyboardAvoidingView behavior="padding">
