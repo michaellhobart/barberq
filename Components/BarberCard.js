@@ -1,5 +1,7 @@
 import React from 'react'
-import {View, Text, TouchableOpacity} from 'react-native'
+import {View, Text, TouchableOpacity, Image} from 'react-native'
+
+import BarberAvatar from './BarberAvatar'
 
 const BarberCard = props =>
 <View>
@@ -11,10 +13,12 @@ const BarberCard = props =>
       margin: 10,
       width: 275,
       height: 275,
-      backgroundColor: '#8AA29E',
       borderRadius: 20,
     }}>
-      <Text>{props.name}</Text>
+      <View style={{marginBottom: 10}}>
+        <BarberAvatar name={props.name} avatar={props.avatar}/>
+      </View>
+      <Text style={{color:'#ecf0f1', fontWeight:'700', fontSize: 35}}>{props.name}</Text>
     </View>
   </TouchableOpacity>
 </View>

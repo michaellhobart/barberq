@@ -19,12 +19,12 @@ class App extends Component {
     pendingBarberPref: "",
     filteredBarber: "",
     barbers: [
-      {id: 0, name: "Next Available"},
-      {id: 1, name: "Pedro"},
-      {id: 2, name: "John"},
-      {id: 3, name: "Kayla"},
-      {id: 4, name: "Corey"},
-      {id: 5, name: "Matt"}
+      {id: 0, name: "Matt", avatar: require('./assets/images/barbers/matt.jpg')},
+      {id: 1, name: "Pedro", avatar: require('./assets/images/barbers/pedro.jpg')},
+      {id: 2, name: "John", avatar: require('./assets/images/barbers/john.jpg')},
+      {id: 3, name: "Kayla", avatar: require('./assets/images/barbers/kayla.jpg')},
+      {id: 4, name: "Corey", avatar: require('./assets/images/barbers/corey.jpg')},
+      {id: 5, name: "Next Available", avatar: require('./assets/images/barbers/pedro.jpg')}
     ]
   }
 
