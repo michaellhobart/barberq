@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, StatusBar, Text, TouchableOpacity, AsyncStorage} from 'react-native';
 
-import Expo, {ScreenOrientation, Font} from 'expo';
+import Expo, {ScreenOrientation, KeepAwake} from 'expo';
 
 import NameEntryScreen from './screens/NameEntryScreen'
 import BarberSelectScreen from './screens/BarberSelectScreen'
@@ -14,7 +14,7 @@ import fakeCustomers from './FakeData'
 
 class App extends Component {
   state = {
-    currentScreen: "NameEntry",
+    currentScreen: "Confirmation",
     pendingCustomer: "",
     pendingBarberPref: "",
     filteredBarber: "",
@@ -151,6 +151,7 @@ class App extends Component {
   render() {
     return (
       <View style={{flex: 1, backgroundColor: '#1b1b1b', alignItems: 'center', justifyContent: 'center'}}>
+        <KeepAwake />
         <StatusBar hidden={true}/>
         <NameEntryScreen
           currentScreen={this.state.currentScreen}
