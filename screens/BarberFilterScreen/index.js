@@ -7,15 +7,16 @@ const BarberFilterScreen = (props) => {
   }
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text style={{fontSize: 72, fontWeight: '700', color: '#e67e22'}}>FILTER BARBER</Text>
-      {/* <Button onPress={props.logState} title="Console Log State"/> */}
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', alignContent: 'flex-start'}}>
+      <View style={{flex: 2, /*backgroundColor: '#e67e22',*/ justifyContent: 'center'}}>
+        <Text style={{fontSize: 72, fontWeight: '700', color: '#ecf0f1'}}>BARBER NAME</Text>
+      </View>
+      <View style={{flex:5, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around', alignItems: 'center', alignContent: 'flex-start', width: 900, /*backgroundColor: '#3498db'*/}}>
         {props.barbers
           .filter(barber => barber.name != "Next Available")
           .map((barber, index) =>
           <TouchableOpacity onPress={() => props.filterBarber(barber.name)} key={barber.id}>
-            <View style={{alignItems: 'center', justifyContent: 'center', backgroundColor: "#ecf0f1", width: 500, marginBottom: 20, padding: 20, borderRadius: 20}}>
-              <Text style={{color: '#2ecc71', fontWeight: '700', fontSize: 33}}>{barber.name}</Text>
+            <View style={{alignItems: 'center', justifyContent: 'center', backgroundColor: "#95a5a6", width: 400, marginBottom: 40, padding: 35, borderRadius: 20}}>
+              <Text style={{color: '#333333', fontWeight: '700', fontSize: 33}}>{barber.name}</Text>
             </View>
           </TouchableOpacity>
         )}
