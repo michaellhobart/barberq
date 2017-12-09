@@ -1,14 +1,6 @@
 import React from 'react'
 import {View, Text, Button, TouchableOpacity} from 'react-native'
 
-// const barbers = [
-//   {id: 1, name: "Pedro"},
-//   {id: 2, name: "John"},
-//   {id: 3, name: "Kayla"},
-//   {id: 4, name: "Corey"},
-//   {id: 5, name: "Matt"}
-// ]
-
 const BarberFilterScreen = (props) => {
   if (props.currentScreen != "BarberFilter") {
     return null

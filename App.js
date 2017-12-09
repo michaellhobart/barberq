@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, StatusBar, Text, TouchableOpacity, AsyncStorage} from 'react-native';
 
+import Expo, {ScreenOrientation, Font} from 'expo';
+
 import NameEntryScreen from './screens/NameEntryScreen'
 import BarberSelectScreen from './screens/BarberSelectScreen'
 import ConfirmationScreen from './screens/ConfirmationScreen'
@@ -28,7 +30,14 @@ class App extends Component {
 
   customers = []
 
+  /**** FUNCTIONS TO CALL WHEN APP LOADS ****/
+
+  componentWillMount = () => {
+    Expo.ScreenOrientation.allow(Expo.ScreenOrientation.Orientation.LANDSCAPE_RIGHT);
+  }
+
   /**** FUNCTIONS TO CALL WHEN APP CHANGES ****/
+
   componentWillUpdate = async () => {
     try {
       const storedCustomers = await AsyncStorage.getItem('customers');
@@ -137,39 +146,6 @@ class App extends Component {
     this.setState({pendingCustomer: text})
   }
 
-
-  /******** ASYNC TEST FUNCTIONS ********
-
-  saveData = () => {
-    let obj = {
-      name: 'Johb Dobe',
-      email: 'tust@hormones.come',
-      city: 'Rare, CO'
-    }
-    AsyncStorage.setItem('user', JSON.stringify(obj));
-  }
-
-  displayData = async () => {
-    try {
-      let user = await AsyncStorage.getItem('user');
-      let parsed = JSON.parse(user)
-      alert(parsed.name)
-    }
-    catch (error) {
-      alert(error)
-    }
-  }
-
-  removeData = () => AsyncStorage.multiRemove(['customers', 'lastCustomerId']);
-
-  logAsyncStorage = async () => {
-    const customerz = await AsyncStorage.getItem('customers')
-    console.log(JSON.parse(customerz));
-  }
-
- */
-
-
   /******** COMPONENT RENDER JSX ********/
 
   render() {
@@ -211,52 +187,9 @@ class App extends Component {
           filterBarber={this.filterBarber}
           logState={this.logState}
         />
-        {/* <View>
-          <TouchableOpacity onPress={this.removeData}>
-            <Text style={{color: '#fefefe', fontSize: 40, fontWeight: '700',}}>Click me to Remove data</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.logAsyncStorage}>
-            <Text style={{color: '#fefefe', fontSize: 40, fontWeight: '700',}}>Console.log AsyncStorage</Text>
-          </TouchableOpacity>
-        </View> */}
       </View>
     )
   }
 }
-
-
-// Styles for Components
-const styles = StyleSheet.create({
-
-  initialText: {
-    color: '#fefefe',
-    fontSize: 28,
-    fontWeight: '700',
-    paddingBottom: 20,
-  },
-  barberListContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignContent: 'flex-start'
-  },
-  selectBarberText: {
-    padding: 20,
-    color: '#fefefe',
-    fontSize: 28,
-    fontWeight: '700',
-  },
-  barberContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 10,
-    width: 275,
-    height: 275,
-    backgroundColor: '#8AA29E',
-    borderRadius: 20,
-  }
-});
 
 export default App
