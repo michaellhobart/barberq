@@ -14,7 +14,7 @@ import fakeCustomers from './FakeData'
 
 class App extends Component {
   state = {
-    currentScreen: "NameEntry",
+    currentScreen: "BarberSelect",
     pendingCustomer: "",
     pendingBarberPref: "",
     filteredBarber: "",
