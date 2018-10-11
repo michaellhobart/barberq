@@ -10,14 +10,16 @@ const NameEntryScreen = (props) => {
     return null
   }
   return (
-    <View style={{flex: 1, width: 1000}}>
-      <KeyboardAwareScrollView
+    <View style={{flex: 1, width: 1000, justifyContent: 'center'}}>
+      {/* <KeyboardAwareScrollView
         style={{ backgroundColor: '#1b1b1b' }}
         resetScrollToCoords={{ x: 0, y: 0 }}
         contentContainerStyle={{marginTop: 185}}
         scrollEnabled={false}
-      >
+      > */}
+      <KeyboardAvoidingView behavior="position" contentContainerStyle={{marginTop:-185}}> 
         <View style={{alignItems: 'center', justifyContent: 'center'}}>
+
           <View style={{marginBottom: 75}}>
             <View style={{marginBottom: 10}}>
               <Text style={{fontSize: 60, fontWeight: '200', color: "#ecf0f1", textAlign: "center", letterSpacing: 2}}>
@@ -34,20 +36,22 @@ const NameEntryScreen = (props) => {
           </View>
 
             <View style={{flexDirection: 'row'}}>
-              <TextInput
-                style={{marginLeft: 100, height:110, width: 700, textAlign:'center', fontSize: 50, fontWeight: '700', color: "#ecf0f1", backgroundColor: '#1e1e1e', borderBottomWidth: 2, borderBottomColor: '#262626'}}
-                autoCapitalize={'words'}
-                autoCorrect={false}
-                keyboardType={'default'}
-                returnKeyType={'done'}
-                keyboardAppearance={'dark'}
-                onChangeText={props.changeInputTextValue}
-                value={props.pendingCustomer}
-                onEndEditing={Keyboard.dismiss}
-              />
-              <View style={{marginLeft: 30}}>
-                <Icon name='chevron-right' type='entypo' color='#ecf0f1' size={95} onPress={props.navigateToBarbers}/>
-              </View>
+
+                <TextInput
+                  style={{marginLeft: 100, height:110, width: 700, textAlign:'center', fontSize: 50, fontWeight: '700', color: "#ecf0f1", backgroundColor: '#1e1e1e', borderBottomWidth: 2, borderBottomColor: '#262626'}}
+                  autoCapitalize={'words'}
+                  autoCorrect={false}
+                  keyboardType={'default'}
+                  returnKeyType={'done'}
+                  keyboardAppearance={'dark'}
+                  onChangeText={props.changeInputTextValue}
+                  value={props.pendingCustomer}
+                  onEndEditing={Keyboard.dismiss}
+                />
+                <View style={{marginLeft: 30}}>
+                  <Icon name='chevron-right' type='entypo' color='#ecf0f1' size={95} onPress={props.navigateToBarbers}/>
+                </View>
+
             </View>
 
             {/* </KeyboardAvoidingView> */}
@@ -62,8 +66,10 @@ const NameEntryScreen = (props) => {
             </View> */}
 
         </View>
-        </KeyboardAwareScrollView>
+        {/* </KeyboardAwareScrollView> */}
+        </KeyboardAvoidingView>
       <TouchableOpacity style={{width:125, height: 125, position: 'absolute', left:-10, top:650}} onPress={props.changeScreen}></TouchableOpacity>
+
     </View>
   )
 }
